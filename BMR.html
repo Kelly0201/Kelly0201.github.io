@@ -1,0 +1,21 @@
+function calculateBMR(weight, height, age, gender) {
+  if (gender.toLowerCase() === "male") {
+    bmr = 10 * weight + 6.25 * height - 5 * age + 5;
+  } else if (gender.toLowerCase() === "female") {
+    bmr = 10 * weight + 6.25 * height - 5 * age - 161;
+  } else {
+    return "Invalid gender input.";
+  }
+  
+  return bmr;
+}
+
+// 使用者輸入參數
+var weight = parseFloat(prompt("請輸入您的體重（公斤）："));
+var height = parseFloat(prompt("請輸入您的身高（公分）："));
+var age = parseInt(prompt("請輸入您的年齡："));
+var gender = prompt("請輸入您的性別（男性/女性）：");
+
+// 計算基礎代謝率
+var bmr = calculateBMR(weight, height, age, gender);
+console.log("您的基礎代謝率為：" + bmr + " 千卡/天");
