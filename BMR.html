@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>BMR 計算器</title>
+  <style>
+    .container {
+      max-width: 400px;
+      margin: 0 auto;
+      padding: 20px;
+      background-color: #f2f2f2;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+    .form-group {
+      margin-bottom: 10px;
+    }
+    label {
+      display: block;
+      font-weight: bold;
+    }
+    input[type="text"], input[type="number"], select {
+      width: 100%;
+      padding: 5px;
+      border: 1px solid #ccc;
+      border-radius: 3px;
+    }
+    button {
+      width: 100%;
+      padding: 10px;
+      background-color: #4caf50;
+      color: white;
+      border: none;
+      border-radius: 3px;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #45a049;
+    }
+    .result {
+      margin-top: 20px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>BMR 計算器</h2>
+    <div class="form-group">
+      <label for="weight">體重（公斤）：</label>
+      <input type="number" id="weight" min="0" step="0.01" required>
+    </div>
+    <div class="form-group">
+      <label for="height">身高（公分）：</label>
+      <input type="number" id="height" min="0" step="0.01" required>
+    </div>
+    <div class="form-group">
+      <label for="age">年齡：</label>
+      <input type="number" id="age" min="0" required>
+    </div>
+    <div class="form-group">
+      <label for="gender">性別：</label>
+      <select id="gender">
+        <option value="male">男性</option>
+        <option value="female">女性</option>
+      </select>
+    </div>
+    <button onclick="calculateBMR()">計算</button>
+    <div class="result" id="result"></div>
+  </div>
+
+  <script>
+    function calculateBMR() {
+      var weight = parseFloat(document.getElementById("weight").value);
+      var height = parseFloat(document.getElementById("height").value);
+      var age = parseInt(document.getElementById("age").value);
+      var gender = document.getElementById("gender").value;
+
+      if (gender === "male") {
+        bmr = 10 * weight + 6.25 * height - 5 * age + 5;
+      } else if (gender === "female") {
+        bmr = 10 * weight + 6.25 * height - 5 * age - 161;
+      } else {
+        document.getElementById("result").textContent = "無效的性別選項。";
+        return;
+      }
+
+      document.getElementById("result").textContent = "您的基礎代謝率為：" + bmr.toFixed(2) + " 千卡/天";
+    }
+  </script>
+</body>
+</html>
